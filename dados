@@ -1,0 +1,130 @@
+<?php
+
+$numeros = ["&#9856;","&#9857;","&#9858;","&#9859;","&#9860;","&#9861;"];
+
+// para generar num aleatorio para los dados entre 1 y 6
+function dados(){
+    return rand(1,6);
+}
+// para generar la tirada de 5 dados
+function lanzarDados(){
+    $tirada = array();
+    for($i = 0; $i < 5; $i++){
+        $tirada[] = dados();
+    }
+    return $tirada;
+}
+
+function calcularPuntos($tirada){
+    // ordenar el array para eliminar el valos mas grande y el valor mas pequeñp
+    sort($tirada);
+    // para eliminar el primer valor:
+    array_shift($tirada);
+    // para eliminar el valor del final:
+    array_pop($tirada);
+
+    // sumar el resto de puntos:
+    $puntos = array_sum($tirada);
+    return $puntos;
+}
+
+// para generar las tiradas de cada jugador
+$jugador1 = lanzarDados();
+$jugador2 = lanzarDados();
+
+// para calcular los puntos de cada jugador
+$jugador1puntos = calcularPuntos($jugador1);
+$jugador2puntos = calcularPuntos($jugador2);
+
+// comparar y determinar ganador
+if ($jugador1puntos > $jugador2puntos){
+    $resultado = "Ha ganado el Jugador 1";
+} elseif ($jugador2puntos > $jugador1puntos){
+    $resultado = "Ha ganado el Jugador 2";
+} else {
+    $resultado = "Es un empate";
+}
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados</title>
+    <style>
+
+        .dados1{
+            background-color:red;
+            font-size: 40px;
+        }
+        .dados2{
+            background-color: blue;
+            font-size: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Cinco dados</h1>
+    <p>Actualice la página para que aparezca una nueva partida </p>
+
+
+    <div class="jugadores">
+    <table>
+        <!-- Jugador 1 -->
+        <div class="jugador1">
+            <tr>
+                <td>
+                    <h3>Jugador 1 </h3>
+                </td>
+                <td>
+                    <div class="dados1">
+                        <?php
+                            foreach ($jugador1 as $valor){
+                                echo $numeros[$valor -1];
+                            }
+                            ?>
+                    </div>
+                <td><h3> <?php echo $jugador1puntos."puntos"?></h3></td><br>
+                </div>
+            </tr>
+        </div>
+
+
+        <!-- Jugador 2 -->
+        <div class="jugador2">
+            <tr>
+                <td>
+                    <h3>Jugador 2</h3>
+                </td>
+                <td>
+                    <div class="dados2">
+                        <?php
+                                foreach ($jugador2 as $valor){
+                                    echo $numeros[$valor -1];
+                                }
+                                ?>
+                    </div>
+                </td>
+                <td>
+                    <h3> <?php echo $jugador2puntos."puntos" ?></h3>
+                </td>
+            </tr>
+        </div>
+    </table>
+    </div>
+
+    <!-- Resultado -->
+    <div class="resultado">
+        <p><b>Resultado</b> <?php echo $resultado; ?></p>
+    </div>
+
+</body>
+
+</html>
