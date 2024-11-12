@@ -44,7 +44,7 @@ function pedidos(){
         $mensaje .= "<table style='border: 1px dashed black'> ";
 
         foreach ($_SESSION['pedido'] as $fruta => $cantidad) {
-            $mensaje .= "<tr><td>" . $fruta . "</td><td></td><td>" .$cantidad . "</td></tr>";
+            $mensaje .= "<tr><td>$fruta</td><td></td><td>$cantidad</td></tr>";
         }
         $mensaje .="</table>";
     }
