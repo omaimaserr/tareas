@@ -1,0 +1,22 @@
+body {
+    
+    background-color: #9a9ab4;
+    padding: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+table {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+h2 {
+    text-align: center;
+}
+img {
+    width: 100px;
+    border: 2px solid;
+    border-color: black;            
+}
